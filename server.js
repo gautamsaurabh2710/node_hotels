@@ -1,11 +1,13 @@
 const express = require('express')
 const app = express();
-const mongoose = require('./db');
+const connectDB = require('./db');
+connectDB();
+require('dotenv').config();
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-
+const PORT = process.env.PORT || 3000;
 
 
 app.get('/', function(req, res) {
@@ -22,6 +24,7 @@ const menuRoutes = require('./routes/menuRoutes');
 //use the routers
 app.use('/person', personRoutes);
 app.use('/menu', menuRoutes);
+
 
 
 
